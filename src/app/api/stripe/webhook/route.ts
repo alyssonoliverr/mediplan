@@ -13,6 +13,7 @@ export const POST = async (request: Request) => {
   if (!signature) {
     throw new Error("Stripe signature not found");
   }
+
   const text = await request.text();
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
     apiVersion: "2025-05-28.basil",
@@ -24,24 +25,32 @@ export const POST = async (request: Request) => {
   );
 
   switch (event.type) {
-    case "invoice.paid": {
+    case "invoice.payment_succeeded": {
       if (!event.data.object.id) {
         throw new Error("Subscription ID not found");
       }
-      const { subscription, subscription_details, customer } = event.data
-        .object as unknown as {
+
+      const {
+        parent: {
+          subscription_details: { metadata, subscription },
+        },
+        customer,
+      } = event.data.object as unknown as {
         customer: string;
-        subscription: string;
-        subscription_details: {
-          metadata: {
-            userId: string;
+        parent: {
+          subscription_details: {
+            subscription: string;
+            metadata: {
+              userId: string;
+            };
           };
         };
       };
+
       if (!subscription) {
         throw new Error("Subscription not found");
       }
-      const userId = subscription_details.metadata.userId;
+      const userId = metadata.userId;
       if (!userId) {
         throw new Error("User ID not found");
       }

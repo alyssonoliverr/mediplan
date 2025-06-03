@@ -43,7 +43,7 @@ export function SubscriptionPlan({
   });
   const features = [
     "Cadastro de até 3 médicos",
-    "Agendamentos ilimitados",
+    "Consultas ilimitadas",
     "Métricas básicas",
     "Cadastro de pacientes",
     "Confirmação manual",

@@ -52,9 +52,9 @@ const AppointmentsPage = async () => {
     <PageContainer>
       <PageHeader>
         <PageHeaderContent>
-          <PageTitle>Agendamentos</PageTitle>
+          <PageTitle>Consultas</PageTitle>
           <PageDescription>
-            Gerencie os agendamentos da sua clínica
+            Gerencie as consultas dos beneficiários do plano
           </PageDescription>
         </PageHeaderContent>
         <PageActions>

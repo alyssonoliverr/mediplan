@@ -49,7 +49,7 @@ const AppointmentsChart = ({
 
   const chartConfig = {
     appointments: {
-      label: "Agendamentos",
+      label: "Consultas",
       color: "#0B68F7",
     },
     revenue: {
@@ -62,7 +62,7 @@ const AppointmentsChart = ({
     <Card>
       <CardHeader className="flex flex-row items-center gap-2">
         <DollarSign />
-        <CardTitle>Agendamentos e Faturamento</CardTitle>
+        <CardTitle>Consultas e Faturamento</CardTitle>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig} className="min-h-[200px]">
@@ -112,7 +112,7 @@ const AppointmentsChart = ({
                       <>
                         <div className="h-3 w-3 rounded bg-[#0B68F7]" />
                         <span className="text-muted-foreground">
-                          Agendamentos:
+                          Consultas:
                         </span>
                         <span className="font-semibold">{value}</span>
                       </>

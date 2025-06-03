@@ -41,9 +41,9 @@ const DashboardPage = async ({ searchParams }: DashboardPageProps) => {
   if (!session.user.clinic) {
     redirect("/clinic-form");
   }
-  if (!session.user.plan) {
-    redirect("/new-subscription");
-  }
+  //if (!session.user.plan) {
+  // redirect("/new-subscription");
+  //}
   const { from, to } = await searchParams;
   if (!from || !to) {
     redirect(
@@ -100,9 +100,7 @@ const DashboardPage = async ({ searchParams }: DashboardPageProps) => {
             <CardHeader>
               <div className="flex items-center gap-3">
                 <Calendar className="text-muted-foreground" />
-                <CardTitle className="text-base">
-                  Agendamentos de hoje
-                </CardTitle>
+                <CardTitle className="text-base">Consultas de hoje</CardTitle>
               </div>
             </CardHeader>
             <CardContent>

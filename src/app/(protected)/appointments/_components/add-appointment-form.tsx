@@ -134,11 +134,11 @@ const AddAppointmentForm = ({
 
   const createAppointmentAction = useAction(addAppointment, {
     onSuccess: () => {
-      toast.success("Agendamento criado com sucesso.");
+      toast.success("Consulta agendada com sucesso.");
       onSuccess?.();
     },
     onError: () => {
-      toast.error("Erro ao criar agendamento.");
+      toast.error("Erro ao agendar consulta.");
     },
   });
 
@@ -167,9 +167,9 @@ const AddAppointmentForm = ({
   return (
     <DialogContent className="sm:max-w-[500px]">
       <DialogHeader>
-        <DialogTitle>Novo agendamento</DialogTitle>
+        <DialogTitle>Nova consulta</DialogTitle>
         <DialogDescription>
-          Crie um novo agendamento para sua clínica.
+          Agende uma nova consulta para o beneficiário.
         </DialogDescription>
       </DialogHeader>
       <Form {...form}>
@@ -335,7 +335,7 @@ const AddAppointmentForm = ({
             <Button type="submit" disabled={createAppointmentAction.isPending}>
               {createAppointmentAction.isPending
                 ? "Criando..."
-                : "Criar agendamento"}
+                : "Criar consulta"}
             </Button>
           </DialogFooter>
         </form>

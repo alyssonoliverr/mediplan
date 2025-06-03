@@ -51,10 +51,10 @@ const AppointmentsTableActions = ({
 }: AppointmentsTableActionsProps) => {
   const deleteAppointmentAction = useAction(deleteAppointment, {
     onSuccess: () => {
-      toast.success("Agendamento deletado com sucesso.");
+      toast.success("Consulta deletada com sucesso.");
     },
     onError: () => {
-      toast.error("Erro ao deletar agendamento.");
+      toast.error("Erro ao deletar consulta.");
     },
   });
 
@@ -83,10 +83,10 @@ const AppointmentsTableActions = ({
           <AlertDialogContent>
             <AlertDialogHeader>
               <AlertDialogTitle>
-                Tem certeza que deseja deletar esse agendamento?
+                Tem certeza que deseja deletar essa consulta?
               </AlertDialogTitle>
               <AlertDialogDescription>
-                Essa ação não pode ser revertida. Isso irá deletar o agendamento
+                Essa ação não pode ser revertida. Isso irá deletar a consulta
                 permanentemente.
               </AlertDialogDescription>
             </AlertDialogHeader>

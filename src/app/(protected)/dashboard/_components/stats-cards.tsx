@@ -28,7 +28,7 @@ const StatsCards = ({
       icon: DollarSignIcon,
     },
     {
-      title: "Agendamentos",
+      title: "Consultas",
       value: totalAppointments.toString(),
       icon: CalendarIcon,
     },

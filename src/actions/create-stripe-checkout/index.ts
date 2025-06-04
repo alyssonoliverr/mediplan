@@ -13,41 +13,33 @@ export const createStripeCheckout = actionClient.action(async () => {
   if (!session?.user) {
     throw new Error("Unauthorized");
   }
+  if (!session.user.clinic) {
+    throw new Error("Clinic not found");
+  }
   if (!process.env.STRIPE_SECRET_KEY) {
     throw new Error("Stripe secret key not found");
   }
-  if (!process.env.STRIPE_ESSENTIAL_PLAN_PRICE_ID) {
-    throw new Error("Stripe price ID not found");
-  }
-
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
     apiVersion: "2025-05-28.basil",
   });
-
-  try {
-    const { id: sessionId } = await stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
-      mode: "subscription",
-      success_url: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard`,
-      cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard`,
-      subscription_data: {
-        metadata: {
-          userId: session.user.id,
-        },
+  const { id: sessionId } = await stripe.checkout.sessions.create({
+    payment_method_types: ["card"],
+    mode: "subscription",
+    success_url: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard`,
+    cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard`,
+    subscription_data: {
+      metadata: {
+        userId: session.user.id,
       },
-      line_items: [
-        {
-          price: process.env.STRIPE_ESSENTIAL_PLAN_PRICE_ID,
-          quantity: 1,
-        },
-      ],
-    });
-
-    return {
-      sessionId,
-    };
-  } catch (error) {
-    console.error("Stripe error:", error);
-    throw new Error("Failed to create checkout session");
-  }
+    },
+    line_items: [
+      {
+        price: process.env.STRIPE_ESSENTIAL_PLAN_PRICE_ID,
+        quantity: 1,
+      },
+    ],
+  });
+  return {
+    sessionId,
+  };
 });

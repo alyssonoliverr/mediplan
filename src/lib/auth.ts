@@ -13,6 +13,11 @@ export const auth = betterAuth({
     usePlural: true,
     schema,
   }),
+  trustedOrigins: [
+    "http://localhost:3000",
+    "https://mediplan-m8z7n7zia-yureicodes-projects.vercel.app",
+    "https://mediplan.vercel.app",
+  ],
   socialProviders: {
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID as string,

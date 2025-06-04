@@ -7,21 +7,29 @@ import { db } from "@/db";
 import * as schema from "@/db/schema";
 import { usersTable, usersToClinicsTable } from "@/db/schema";
 
+const isProduction = process.env.NODE_ENV === "production";
+const trustedOrigins = isProduction
+  ? ["https://mediplan.vercel.app"]
+  : ["http://localhost:3000"];
+
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
     provider: "pg",
     usePlural: true,
     schema,
   }),
-  trustedOrigins: [
-    "http://localhost:3000",
-    "https://mediplan-m8z7n7zia-yureicodes-projects.vercel.app",
-    "https://mediplan.vercel.app",
-  ],
+  trustedOrigins,
+  cors: {
+    allowedOrigins: trustedOrigins,
+    credentials: true,
+  },
   socialProviders: {
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      redirectURL: isProduction
+        ? "https://mediplan.vercel.app/api/auth/callback/google"
+        : "http://localhost:3000/api/auth/callback/google",
     },
   },
   plugins: [

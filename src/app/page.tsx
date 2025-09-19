@@ -132,11 +132,11 @@ export default function Home() {
           <div className="flex items-center justify-center gap-1">
             <p className="text-muted-foreground text-sm">© 2024</p>
             <Link
-              href="https://github.com/yureicode"
+              href="https://github.com/alyssonoliverr"
               target="_blank"
               className="text-primary text-sm hover:underline"
             >
-              @yureicode
+              @alyssonoliverr
             </Link>
           </div>
         </div>

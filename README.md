@@ -83,7 +83,7 @@ npm run start
 
 ---
 
-# Boas Práticas de Desenvolvimento
+## Boas Práticas de Desenvolvimento
 
 O desenvolvimento segue princípios consolidados de engenharia de software e boas práticas para aplicações web modernas, incluindo:
 

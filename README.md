@@ -66,7 +66,6 @@ DATABASE_URL="sua_connection_string"
 # Better Auth - Google
 GOOGLE_CLIENT_ID="sua_client_id"
 GOOGLE_CLIENT_SECRET="seu_client_secret"
-AUTH_SECRET="chave_unica_para_tokens"
 NEXT_PUBLIC_API_URL="http://localhost:3000"
 ```
 
